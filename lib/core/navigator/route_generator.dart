@@ -1,6 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/models/notesList.dart';
+
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
     final args = settings.arguments;
@@ -30,6 +32,8 @@ class RouteGenerator {
 
   static Widget getPage(RouteSettings settings, args) {
     switch (settings.name) {
+      case NotesList.routeName:
+        return const NotesList();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
@@ -40,7 +44,6 @@ class RouteGenerator {
 
 class DefaultRoute extends StatelessWidget {
   static const routeName = '/DefaultRoute';
-
   const DefaultRoute({super.key});
 
   @override
