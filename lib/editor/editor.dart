@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noted/widgets/text.dart';
 
 class EditorPage extends StatefulWidget {
   const EditorPage({super.key});
@@ -22,9 +23,8 @@ class _EditorPageState extends State<EditorPage> {
       children: [
         Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            child: TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'dfa'),
+            child: AppFormField(
+              hint: "Title",
             ))
       ],
     );
