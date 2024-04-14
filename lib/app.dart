@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
+import 'controller/notes_controller.dart';
 import 'core/constants/brand_colors.dart';
+import 'core/di/di_manager.dart';
 import 'core/navigator/route_generator.dart';
 import 'core/utils/screen_utils.dart';
 
@@ -23,6 +25,10 @@ class MyApp extends StatelessWidget {
         body: SizedBox(
           width: 350.width,
           height: 286.73.height,
+          child: ElevatedButton(onPressed: (){
+            DIManager.findDep<NotesController>().insertNote(title: 'title', content: 'title');
+
+          },child: const Text("hello world"),),
         ),
       ),
       builder: (BuildContext context, Widget? widget) {
