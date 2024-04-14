@@ -1,6 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/models/addIcon.dart';
+
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
     final args = settings.arguments;
@@ -30,6 +32,8 @@ class RouteGenerator {
 
   static Widget getPage(RouteSettings settings, args) {
     switch (settings.name) {
+      case AddIcon.routeName:
+        return const AddIcon();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
