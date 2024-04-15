@@ -1,6 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/editor/page/Editor.dart';
+import '../../features/editor/page/show_dialog_icon.dart';
+import '../../features/show/page/show.dart';
+
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
     final args = settings.arguments;
@@ -30,6 +34,12 @@ class RouteGenerator {
 
   static Widget getPage(RouteSettings settings, args) {
     switch (settings.name) {
+      case EditorPage.routeName:
+        return const EditorPage();
+      case ShowPage.routeName:
+        return const ShowPage();
+      case ShowDialogIcon.routeName:
+        return const ShowDialogIcon();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
