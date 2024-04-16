@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-
-import 'controller/notes_controller.dart';
 import 'core/constants/brand_colors.dart';
-import 'core/di/di_manager.dart';
 import 'core/navigator/route_generator.dart';
-import 'data/models/notesList.dart';
+import 'features/notes_list_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,11 +18,7 @@ class MyApp extends StatelessWidget {
             seedColor: BrandColors.white, background: BrandColors.grey),
         useMaterial3: true,
       ),
-
-      initialRoute: NotesList.routeName,
-
-      
-
+      initialRoute: NotesListPage.routeName,
       builder: (BuildContext context, Widget? widget) {
         return Container(
           child: widget,

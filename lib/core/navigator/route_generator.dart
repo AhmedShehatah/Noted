@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/notesList.dart';
+import '../../features/notes_list_page.dart';
 
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
@@ -32,8 +32,8 @@ class RouteGenerator {
 
   static Widget getPage(RouteSettings settings, args) {
     switch (settings.name) {
-      case NotesList.routeName:
-        return const NotesList();
+      case NotesListPage.routeName:
+        return NotesListPage();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
