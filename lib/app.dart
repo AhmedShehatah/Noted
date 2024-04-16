@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-
 import 'core/constants/brand_colors.dart';
 import 'core/navigator/route_generator.dart';
 import 'features/editor/page/Editor.dart';
 import 'features/editor/page/show_dialog_icon.dart';
 import 'features/show/page/show.dart';
+import 'features/notes_list_page.dart';
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,10 +22,7 @@ class MyApp extends StatelessWidget {
             seedColor: BrandColors.white, background: BrandColors.grey),
         useMaterial3: true,
       ),
-      //home: const ShowPage(),
-      home: const EditorPage(),
-      //home: const ShowDialogIcon(),
-      //initialRoute: ShowPage.routeName,
+      initialRoute: NotesListPage.routeName,
       builder: (BuildContext context, Widget? widget) {
         return Container(
           child: widget,
