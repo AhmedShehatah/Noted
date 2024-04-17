@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
             seedColor: BrandColors.white, background: BrandColors.grey),
         useMaterial3: true,
       ),
-      //home: const ShowPage(),
-      home: const EditorPage(),
+      home: const ShowPage(),
+      //home: const EditorPage(),
       //home: const ShowDialogIcon(),
       //initialRoute: ShowPage.routeName,
       builder: (BuildContext context, Widget? widget) {

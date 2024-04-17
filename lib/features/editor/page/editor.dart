@@ -11,9 +11,12 @@ class EditorPage extends StatefulWidget {
 }
 
 class _EditorPageState extends State<EditorPage> {
+  TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -31,9 +34,13 @@ class _EditorPageState extends State<EditorPage> {
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: BrandColors.greyTextColor),
               ),
-              child: const SingleChildScrollView(
+              child: SingleChildScrollView(
                 child: AppFormField(
-                    hint: "Type Something...", maxLine: 8, minLine: 8),
+                  controller: _controller,
+                  hint: "Type Something...",
+                  maxLine: 16,
+                  minLine: 10,
+                ),
               ),
             ),
           ],

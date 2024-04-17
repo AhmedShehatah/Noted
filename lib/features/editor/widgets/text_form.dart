@@ -6,6 +6,7 @@ class AppFormField extends StatefulWidget {
   const AppFormField(
       {super.key,
       this.hint,
+      this.controller,
       this.action = TextInputAction.next,
       this.textInputType = TextInputType.text,
       this.isSecure = false,
@@ -15,6 +16,7 @@ class AppFormField extends StatefulWidget {
       this.sizeText = 20,
       this.onTap,
       this.label});
+  final TextEditingController? controller;
 
   final String? hint;
   final TextInputAction action;
@@ -40,6 +42,7 @@ class _AppFormFieldState extends State<AppFormField> {
       },
       readOnly: !widget.isEditable,
       onTap: widget.onTap,
+      controller: widget.controller,
       keyboardType: widget.textInputType,
       textInputAction: widget.action,
       maxLines: widget.maxLine,
