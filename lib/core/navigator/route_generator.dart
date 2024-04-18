@@ -1,6 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../features/editor/page/Editor.dart';
+import '../../features/show/page/show_note.dart';
 import '../../features/notes_list_page.dart';
 
 class RouteGenerator {
@@ -32,8 +34,12 @@ class RouteGenerator {
 
   static Widget getPage(RouteSettings settings, args) {
     switch (settings.name) {
+      case EditorPage.routeName:
+        return const EditorPage();
+      case ShowNote.routeName:
+        return const ShowNote();
       case NotesListPage.routeName:
-        return NotesListPage();
+        return const NotesListPage();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);

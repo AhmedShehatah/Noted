@@ -46,7 +46,7 @@ class _NotesListPageState extends State<NotesListPage> {
                   SlidableAction(
                     onPressed: (context) {},
                     icon: Icons.delete,
-                    backgroundColor: Color(0xFFFF0000),
+                    backgroundColor: const Color(0xFFFF0000),
                   ),
                 ]),
                 child: Card(
