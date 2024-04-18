@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../controller/notes_controller.dart';
 import '../../../core/constants/brand_colors.dart';
+import '../../../core/di/di_manager.dart';
 import '../../../core/utils/screen_utils.dart';
 import '../widgets/info_dialog.dart';
 
@@ -12,6 +14,9 @@ class EditorPage extends StatefulWidget {
 }
 
 class _EditorPageState extends State<EditorPage> {
+  final TextEditingController _contentController = TextEditingController();
+  final TextEditingController _titleController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +27,10 @@ class _EditorPageState extends State<EditorPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //  DIManager.findDep<NotesController>().getAllNotes(),
               SizedBox(height: 20.height),
               TextFormField(
+                controller: _titleController,
                 maxLines: null,
                 decoration: InputDecoration.collapsed(
                   hintText: "Title",
@@ -34,6 +41,7 @@ class _EditorPageState extends State<EditorPage> {
               ),
               SizedBox(height: 20.height),
               TextFormField(
+                controller: _contentController,
                 maxLines: null,
                 decoration: InputDecoration.collapsed(
                   hintText: "Type Something...",
@@ -53,22 +61,49 @@ class _EditorPageState extends State<EditorPage> {
                     context: context,
                     builder: (BuildContext context) => InfoDialog(
                       colorRight: Colors.green,
-                      onPressRight: () {},
+                      onPressRight: () {
+                        DIManager.findDep<NotesController>().insertNote(
+                            title: _titleController.text,
+                            content: _contentController.text);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Changes saved successfully!'),
+                          ),
+                        );
+                        Navigator.of(context).pop();
+                      },
                       textButRight: "Save",
                       colorLeft: Colors.red,
                       textButLeft: "Discard",
                       onPressLeft: () {
                         showDialog(
-                            context: context,
-                            builder: (BuildContext context) => InfoDialog(
-                                colorRight: Colors.green,
-                                textButRight: "Keep",
-                                colorLeft: Colors.red,
-                                textButLeft: "Discard",
-                                text:
-                                    "Are your sure you want discard your changes ?",
-                                onPressRight: () {},
-                                onPressLeft: () {}));
+                          context: context,
+                          builder: (BuildContext context) => InfoDialog(
+                            colorRight: Colors.green,
+                            textButRight: "Keep",
+                            colorLeft: Colors.red,
+                            textButLeft: "Discard",
+                            text:
+                                "Are your sure you want discard your changes ?",
+                            onPressRight: () {
+                              DIManager.findDep<NotesController>().insertNote(
+                                  title: _titleController.text,
+                                  content: _contentController.text);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Changes saved successfully!'),
+                                ),
+                              );
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+                            },
+                            onPressLeft: () {
+                              Navigator.of(context).pop();
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        );
                       },
                       text: "Save changes ?",
                     ),
