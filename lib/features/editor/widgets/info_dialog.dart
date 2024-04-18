@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/brand_colors.dart';
+import '../../../core/utils/screen_utils.dart';
 
-class ShowDialog extends StatelessWidget {
-  const ShowDialog(
+class InfoDialog extends StatelessWidget {
+  const InfoDialog(
       {super.key,
       required this.colorRight,
       required this.colorLeft,
@@ -33,7 +34,7 @@ class ShowDialog extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(color: BrandColors.greyTextColor),
       ),
-      contentTextStyle: TextStyle(color: BrandColors.white, fontSize: 20),
+      contentTextStyle: TextStyle(color: BrandColors.white, fontSize: 20.width),
       actions: [
         Row(
           children: [
@@ -42,9 +43,9 @@ class ShowDialog extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: colorLeft,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8))),
+                      borderRadius: BorderRadius.circular(8.width))),
               child: SizedBox(
-                width: 60,
+                width: 60.width,
                 child: Text(
                   textButLeft,
                   textAlign: TextAlign.center,
@@ -58,9 +59,9 @@ class ShowDialog extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: colorRight,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8))),
+                      borderRadius: BorderRadius.circular(8.width))),
               child: SizedBox(
-                  width: 60,
+                  width: 60.width,
                   child: Text(
                     textButRight,
                     textAlign: TextAlign.center,

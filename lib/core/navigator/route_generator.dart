@@ -2,8 +2,8 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/editor/page/Editor.dart';
-import '../../features/editor/page/show_dialog_icon.dart';
-import '../../features/show/page/show.dart';
+import '../../features/show/page/show_note.dart';
+import '../../features/notes_list_page.dart';
 
 class RouteGenerator {
   static Route? generateRoutes(RouteSettings settings) {
@@ -36,10 +36,10 @@ class RouteGenerator {
     switch (settings.name) {
       case EditorPage.routeName:
         return const EditorPage();
-      case ShowPage.routeName:
-        return const ShowPage();
-      case ShowDialogIcon.routeName:
-        return const ShowDialogIcon();
+      case ShowNote.routeName:
+        return const ShowNote();
+      case NotesListPage.routeName:
+        return const NotesListPage();
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);
@@ -50,7 +50,6 @@ class RouteGenerator {
 
 class DefaultRoute extends StatelessWidget {
   static const routeName = '/DefaultRoute';
-
   const DefaultRoute({super.key});
 
   @override

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/constants/brand_colors.dart';
-import '../widgets/text_form.dart';
+import '../../../core/utils/screen_utils.dart';
+import '../widgets/info_dialog.dart';
 
 class EditorPage extends StatefulWidget {
   const EditorPage({super.key});
@@ -11,39 +12,71 @@ class EditorPage extends StatefulWidget {
 }
 
 class _EditorPageState extends State<EditorPage> {
-  TextEditingController _controller = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const AppFormField(
-              hint: "Title",
-              sizeText: 35,
-              maxLine: 3,
-            ),
-            const SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: BrandColors.greyTextColor),
-              ),
-              child: SingleChildScrollView(
-                child: AppFormField(
-                  controller: _controller,
-                  hint: "Type Something...",
-                  maxLine: 16,
-                  minLine: 10,
+        padding: EdgeInsets.all(16.height),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.height),
+              TextFormField(
+                maxLines: null,
+                decoration: InputDecoration.collapsed(
+                  hintText: "Title",
+                  hintStyle: TextStyle(
+                      color: BrandColors.greyTextColor, fontSize: 40.0.width),
                 ),
+                style: TextStyle(fontSize: 40.width, color: BrandColors.white),
               ),
-            ),
-          ],
+              SizedBox(height: 20.height),
+              TextFormField(
+                maxLines: null,
+                decoration: InputDecoration.collapsed(
+                  hintText: "Type Something...",
+                  hintStyle: TextStyle(
+                      color: BrandColors.greyTextColor, fontSize: 25.0.width),
+                ),
+                style:
+                    TextStyle(fontSize: 25.0.width, color: BrandColors.white),
+              ),
+              ElevatedButton(
+                child: const Text(
+                  'Show',
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => InfoDialog(
+                      colorRight: Colors.green,
+                      onPressRight: () {},
+                      textButRight: "Save",
+                      colorLeft: Colors.red,
+                      textButLeft: "Discard",
+                      onPressLeft: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => InfoDialog(
+                                colorRight: Colors.green,
+                                textButRight: "Keep",
+                                colorLeft: Colors.red,
+                                textButLeft: "Discard",
+                                text:
+                                    "Are your sure you want discard your changes ?",
+                                onPressRight: () {},
+                                onPressLeft: () {}));
+                      },
+                      text: "Save changes ?",
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
