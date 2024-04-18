@@ -2,7 +2,8 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/db/setup/db_setup.dart';
-import '../../features/editor/page/editor.dart';
+import '../../features/add_notes/page/add_notes.dart';
+import '../../features/editor/editor.dart';
 import '../../features/show/page/show_note.dart';
 import '../../features/notes_list_page.dart';
 
@@ -35,14 +36,18 @@ class RouteGenerator {
 
   static Widget getPage(RouteSettings settings, args) {
     switch (settings.name) {
-      case EditorPage.routeName:
-        return const EditorPage();
+      case AddNotes.routeName:
+        return const AddNotes();
       case ShowNote.routeName:
         return ShowNote(
           note: settings.arguments as NoteData,
         );
       case NotesListPage.routeName:
         return const NotesListPage();
+      case EditorPage.routeName:
+        return EditorPage(
+          note: settings.arguments as NoteData,
+        );
       default:
         settings = RouteSettings(
             arguments: settings.arguments, name: DefaultRoute.routeName);

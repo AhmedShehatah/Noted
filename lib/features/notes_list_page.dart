@@ -7,7 +7,7 @@ import '../core/di/di_manager.dart';
 import '../core/utils/screen_utils.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import 'editor/page/editor.dart';
+import 'add_notes/page/add_notes.dart';
 import 'show/page/show_note.dart';
 
 class NotesListPage extends StatefulWidget {
@@ -37,7 +37,7 @@ class _NotesListPageState extends State<NotesListPage> {
             color: Colors.white,
           ),
           onPressed: () {
-            DIManager.findNavigator().pushNamed(EditorPage.routeName);
+            DIManager.findNavigator().pushNamed(AddNotes.routeName);
           },
         ),
         body: Padding(
