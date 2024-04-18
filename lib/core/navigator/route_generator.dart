@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/editor/page/Editor.dart';
+import '../../features/editor/page/editor.dart';
 import '../../features/show/page/show_note.dart';
 import '../../features/notes_list_page.dart';
 

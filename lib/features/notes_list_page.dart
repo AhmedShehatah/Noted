@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'dart:math' as math;
 import '../core/constants/brand_colors.dart';
 import '../core/utils/screen_utils.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-// ignore: must_be_immutable
 class NotesListPage extends StatefulWidget {
   const NotesListPage({super.key});
   static const String routeName = "/notesListpage";
