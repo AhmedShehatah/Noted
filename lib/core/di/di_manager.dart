@@ -10,6 +10,7 @@ final getIt = GetIt.instance;
 class DIManager {
   DIManager._();
   static Future<void> initDI() async {
+    _injectDep(AppNavigator());
     _injectDep(AppDatabase());
     _injectDep(NotesDao(findDep()));
     _injectDep(NotesController(findDep()));

@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/screen_utils.dart';
 
 import '../../../core/constants/brand_colors.dart';
+import '../../../data/db/setup/db_setup.dart';
 
 class ShowNote extends StatefulWidget {
-  const ShowNote({super.key});
+  const ShowNote({super.key, required this.note});
   static const String routeName = "/ShoworPage";
+
+  final NoteData note;
   @override
   State<StatefulWidget> createState() => _ShowNoteState();
 }
@@ -22,7 +25,7 @@ class _ShowNoteState extends State<ShowNote> {
             children: [
               SizedBox(height: 20.height),
               Text(
-                "Book Review : The Design of Everyday Things by Don Norman",
+                widget.note.title,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 35.width,
@@ -30,7 +33,7 @@ class _ShowNoteState extends State<ShowNote> {
               ),
               SizedBox(height: 20.height),
               Text(
-                "The Design of Everyday Things is required reading for anyone who is interested in the user experience. I personally like to reread it every year or two.Norman is aware of the durability of his work and the applicability of his principles to multiple disciplines. If you know the basics of design better than anyone else, you can apply them flawlessly anywhere.The Design of Everyday Things is required reading for anyone who is interested in the user experience. I personally like to reread it every year or two.Norman is aware of the durability of his work and the applicability of his principles to multiple disciplines. If you know the basics of design better than anyone else, you can apply them flawlessly anywhere.The Design of Everyday Things is required reading for anyone who is interested in the user experience. I personally like to reread it every year or two.Norman is aware of the durability of his work and the applicability of his principles to multiple disciplines. If you know the basics of design better than anyone else, you can apply them flawlessly anywhere.",
+                widget.note.content,
                 style: TextStyle(fontSize: 20.width, color: BrandColors.white),
               ),
             ],

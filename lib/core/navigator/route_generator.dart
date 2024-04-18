@@ -1,6 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/db/setup/db_setup.dart';
 import '../../features/editor/page/editor.dart';
 import '../../features/show/page/show_note.dart';
 import '../../features/notes_list_page.dart';
@@ -37,7 +38,9 @@ class RouteGenerator {
       case EditorPage.routeName:
         return const EditorPage();
       case ShowNote.routeName:
-        return const ShowNote();
+        return ShowNote(
+          note: settings.arguments as NoteData,
+        );
       case NotesListPage.routeName:
         return const NotesListPage();
       default:
