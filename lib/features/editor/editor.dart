@@ -5,6 +5,7 @@ import '../../../core/constants/brand_colors.dart';
 import '../../../core/di/di_manager.dart';
 import '../../../core/utils/screen_utils.dart';
 import '../../../data/db/setup/db_setup.dart';
+import '../../core/widgets/secondary_appbar.dart';
 import '../add_notes/widgets/info_dialog.dart';
 
 class EditorPage extends StatefulWidget {
@@ -26,6 +27,7 @@ class _EditorPageState extends State<EditorPage> {
     _contentController.text = widget.note.content;
 
     return Scaffold(
+      appBar: const SecondaryAppBar(),
       resizeToAvoidBottomInset: true,
       body: Padding(
         padding: EdgeInsets.all(16.height),

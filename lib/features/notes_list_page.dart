@@ -7,6 +7,7 @@ import '../core/di/di_manager.dart';
 import '../core/utils/screen_utils.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
+import '../core/widgets/main_appbar.dart';
 import 'add_notes/page/add_notes.dart';
 import 'show/page/show_note.dart';
 
@@ -30,6 +31,7 @@ class _NotesListPageState extends State<NotesListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: const MainAppBar(),
         floatingActionButton: FloatingActionButton(
           backgroundColor: BrandColors.grey,
           child: const Icon(
