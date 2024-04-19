@@ -6,6 +6,8 @@ import 'core/constants/brand_colors.dart';
 import 'core/di/di_manager.dart';
 import 'core/navigator/route_generator.dart';
 import 'core/utils/screen_utils.dart';
+import 'core/widgets/main_appbar.dart';
+import 'core/widgets/secondary_appbar.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,13 +24,17 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Scaffold(
+        appBar: const MainAppBar(),
         body: SizedBox(
           width: 350.width,
           height: 286.73.height,
-          child: ElevatedButton(onPressed: (){
-            DIManager.findDep<NotesController>().insertNote(title: 'title', content: 'title');
-
-          },child: const Text("hello world"),),
+          child: ElevatedButton(
+            onPressed: () {
+              DIManager.findDep<NotesController>()
+                  .insertNote(title: 'title', content: 'title');
+            },
+            child: const Text("hello world"),
+          ),
         ),
       ),
       builder: (BuildContext context, Widget? widget) {
