@@ -24,6 +24,7 @@ dependencies:
   path: ^1.9.0
   animations: ^2.0.11
   intl: ^0.19.0
+  flutter_slidable: ^3.1.0
 
 dev_dependencies:
   flutter_test:
