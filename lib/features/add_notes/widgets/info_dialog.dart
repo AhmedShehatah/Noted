@@ -61,12 +61,13 @@ class InfoDialog extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.width))),
               child: SizedBox(
-                  width: 60.width,
-                  child: Text(
-                    textButRight,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: BrandColors.white),
-                  )),
+                width: 60.width,
+                child: Text(
+                  textButRight,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: BrandColors.white),
+                ),
+              ),
             )
           ],
         )

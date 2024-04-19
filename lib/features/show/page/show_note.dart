@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../controller/notes_controller.dart';
+import '../../../core/di/di_manager.dart';
 import '../../../core/utils/screen_utils.dart';
 
 import '../../../core/constants/brand_colors.dart';
 import '../../../data/db/setup/db_setup.dart';
+import '../../add_notes/page/add_notes.dart';
+import '../../editor/editor.dart';
 
 class ShowNote extends StatefulWidget {
   const ShowNote({super.key, required this.note});
@@ -36,6 +40,12 @@ class _ShowNoteState extends State<ShowNote> {
                 widget.note.content,
                 style: TextStyle(fontSize: 20.width, color: BrandColors.white),
               ),
+              ElevatedButton(
+                  onPressed: () {
+                    DIManager.findNavigator().pushNamed(EditorPage.routeName,
+                        arguments: widget.note);
+                  },
+                  child: const Text("edit"))
             ],
           ),
         ),
