@@ -4,22 +4,27 @@ import '../constants/brand_colors.dart';
 import '../di/di_manager.dart';
 import '../styles/app_styles.dart';
 
-class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SecondaryAppBar({super.key});
+class EditAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const EditAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(backgroundColor: BrandColors.grey, title: _buildBar());
+    return AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: BrandColors.grey,
+        title: _buildBar());
   }
 
   Widget _buildBar() {
     return Row(
       children: [
-        BackButton(
+        IconButton.outlined(
+          style: AppStyle.iconButtonMainStyle(),
+          color: BrandColors.white,
           onPressed: () {
             DIManager.findNavigator().pop();
           },
-          color: BrandColors.white,
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
         const Spacer(),
         Row(

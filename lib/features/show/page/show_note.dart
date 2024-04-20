@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../controller/notes_controller.dart';
 import '../../../core/di/di_manager.dart';
 import '../../../core/utils/screen_utils.dart';
-
 import '../../../core/constants/brand_colors.dart';
+import '../../../core/widgets/show_appbar.dart';
 import '../../../data/db/setup/db_setup.dart';
-import '../../add_notes/page/add_notes.dart';
 import '../../editor/editor.dart';
 
 class ShowNote extends StatefulWidget {
@@ -21,6 +20,7 @@ class _ShowNoteState extends State<ShowNote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const ShowNoteAppBar(),
       body: Padding(
         padding: EdgeInsets.all(20.width),
         child: SingleChildScrollView(

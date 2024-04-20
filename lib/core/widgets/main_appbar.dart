@@ -7,7 +7,7 @@ import 'search_field.dart';
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
   const MainAppBar({super.key});
   @override
-  Size get preferredSize => const Size.fromHeight(100);
+  Size get preferredSize => const Size.fromHeight(50);
   @override
   State<MainAppBar> createState() => _MainAppBarState();
 }
@@ -23,6 +23,7 @@ class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: BrandColors.grey,
         title: isSearching ? _searchAppBar() : _normalAppBar());
   }
