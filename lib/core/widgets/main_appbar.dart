@@ -74,7 +74,22 @@ class _MainAppBarState extends State<MainAppBar> {
             },
             icon: const Icon(Icons.search)),
         IconButton.outlined(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return const AlertDialog(
+                    title: Text(
+                      'Created By:-',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    content: Text(
+                      '''- Ahmed Shehatah\n- Hussien Ahmed\n- Aalaa Adel\n- Ebtehal Ahmed''',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                });
+          },
           icon: const Icon(Icons.info_outline),
           color: Colors.white,
           style: AppStyle.iconButtonMainStyle(),
