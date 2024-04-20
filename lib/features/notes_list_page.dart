@@ -97,13 +97,17 @@ class _NotesListPageState extends State<NotesListPage> {
                           children: [
                             Text(
                               notes[index].title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
                             Text(
                               notes[index].content,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: const TextStyle(fontSize: 17),
-                            )
+                            ),
                           ],
                         ),
                       ),

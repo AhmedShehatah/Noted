@@ -69,15 +69,26 @@ class _AddNotesState extends State<AddNotes> {
         text: "Are you sure you want to add this note?",
         colorRight: Colors.green,
         onPressRight: () {
-          DIManager.findDep<NotesController>().insertNote(
-              title: _titleController.text, content: _contentController.text);
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Your note has been added successfully'),
-            ),
-          );
+          if (_titleController.text.isNotEmpty ||
+              _contentController.text.isNotEmpty) {
+            DIManager.findDep<NotesController>().insertNote(
+                title: _titleController.text, content: _contentController.text);
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Your note has been added successfully'),
+              ),
+            );
+          } else {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Please enter a note before saving.'),
+              ),
+            );
+          }
         },
         textButRight: "Save",
         colorLeft: Colors.red,
