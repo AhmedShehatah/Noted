@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../controller/notes_controller.dart';
 import '../constants/brand_colors.dart';
+import '../di/di_manager.dart';
 import '../styles/app_styles.dart';
 import 'search_field.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const MainAppBar({super.key});
+  const MainAppBar({
+    super.key,
+  });
+
   @override
   Size get preferredSize => const Size.fromHeight(50);
   @override
@@ -20,6 +25,8 @@ class _MainAppBarState extends State<MainAppBar> {
     });
   }
 
+  final _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -31,11 +38,18 @@ class _MainAppBarState extends State<MainAppBar> {
   Widget _searchAppBar() {
     return Row(
       children: [
-        SearchField(search: (searchword) {}),
+        SearchField(
+            controller: _controller,
+            search: (searchword) {
+              DIManager.findDep<NotesController>().search(searchword);
+            }),
         const Spacer(),
         IconButton.outlined(
             color: Colors.white,
             onPressed: () {
+              _controller.clear();
+              DIManager.findDep<NotesController>().search("");
+
               toggleSearch();
             },
             style: AppStyle.iconButtonMainStyle(),
@@ -46,7 +60,6 @@ class _MainAppBarState extends State<MainAppBar> {
 
   Widget _normalAppBar() {
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
           "NOTED",
@@ -70,16 +83,3 @@ class _MainAppBarState extends State<MainAppBar> {
     );
   }
 }
-
-
-
-/* title: const Text(
-        "NOTED",
-        style: TextStyle(color: Colors.amber),
-      ),
-      backgroundColor: BrandColors.grey,
-      actions: [
-        IconButton.filledTonal(
-            onPressed: () {}, icon: const Icon(Icons.search)),
-        IconButton.filledTonal(onPressed: () {}, icon: const Icon(Icons.info))
-      ], */

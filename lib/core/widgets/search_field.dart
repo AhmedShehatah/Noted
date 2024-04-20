@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../utils/screen_utils.dart';
 
 class SearchField extends StatelessWidget {
-  SearchField({super.key, required this.search});
-  final TextEditingController _controller = TextEditingController();
-  final void Function(String x) search;
+  const SearchField(
+      {super.key, required this.search, required this.controller});
+  final TextEditingController controller;
+  final void Function(String) search;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -21,7 +22,7 @@ class SearchField extends StatelessWidget {
             filled: true,
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
-        controller: _controller,
+        controller: controller,
         onChanged: search,
       ),
     );
