@@ -23,8 +23,9 @@ class NotesController {
   void search(String title) {
     Logger().d("inside search");
 
-    _filterednotes.value =
-        _notes.where((note) => note.title.contains(title)).toList();
+    _filterednotes.value = _notes
+        .where((note) => note.title.toLowerCase().contains(title.toLowerCase()))
+        .toList();
   }
 
   RxList<NoteData> getAllNotes() => _filterednotes;

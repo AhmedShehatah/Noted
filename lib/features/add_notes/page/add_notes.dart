@@ -4,7 +4,7 @@ import '../../../controller/notes_controller.dart';
 import '../../../core/constants/brand_colors.dart';
 import '../../../core/di/di_manager.dart';
 import '../../../core/utils/screen_utils.dart';
-import '../../../core/widgets/edit_appbar.dart';
+import '../../../core/widgets/add_appbar.dart';
 import '../widgets/info_dialog.dart';
 
 class AddNotes extends StatefulWidget {
@@ -22,7 +22,7 @@ class _AddNotesState extends State<AddNotes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EditAppBar(
+      appBar: AddAppBar(
         save: save,
       ),
       resizeToAvoidBottomInset: true,
