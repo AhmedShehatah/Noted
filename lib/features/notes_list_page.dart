@@ -96,14 +96,17 @@ class _NotesListPageState extends State<NotesListPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              notes[index].title,
+                              notes[index].title.length > 20
+                                  ? '${notes[index].title.substring(0, 20)}...'
+                                  : notes[index].title,
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
                             Text(
-                              notes[index].content,
-                              style: const TextStyle(fontSize: 17),
-                            )
+                              notes[index].content.length > 40
+                                  ? '${notes[index].content.substring(0, 40)}...'
+                                  : notes[index].content,
+                            ),
                           ],
                         ),
                       ),
