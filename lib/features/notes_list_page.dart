@@ -46,8 +46,24 @@ class _NotesListPageState extends State<NotesListPage> {
           padding: const EdgeInsets.only(left: 15, right: 15, top: 40),
           child: Obx(() {
             final notes = DIManager.findDep<NotesController>().getAllNotes();
+            if (notes.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset('assets/empty.png'),
+                    10.emptyHeight,
+                    const Text(
+                      'Create Your First Note',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              );
+            }
             return ListView.builder(
               shrinkWrap: true,
+              reverse: true,
               itemCount: notes.length,
               itemBuilder: (BuildContext context, int index) {
                 return Slidable(
@@ -56,7 +72,8 @@ class _NotesListPageState extends State<NotesListPage> {
                     children: [
                       SlidableAction(
                         onPressed: (context) {
-                          removedNote();
+                          DIManager.findDep<NotesController>()
+                              .deleNote(notes[index].id);
                         },
                         icon: Icons.delete,
                         backgroundColor: const Color(0xFFFF0000),
@@ -97,12 +114,5 @@ class _NotesListPageState extends State<NotesListPage> {
             );
           }),
         ));
-  }
-
-  void removedNote() {
-    SnackBar(
-        duration: const Duration(seconds: 5),
-        content: const Text('Note Deleted'),
-        action: SnackBarAction(label: 'Undo', onPressed: () {}));
   }
 }

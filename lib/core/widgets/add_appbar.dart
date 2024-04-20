@@ -4,16 +4,17 @@ import '../constants/brand_colors.dart';
 import '../di/di_manager.dart';
 import '../styles/app_styles.dart';
 
-class EditAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const EditAppBar({super.key, required this.save});
+class AddAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const AddAppBar({super.key, required this.save});
   final Function() save;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: BrandColors.grey,
-        title: _buildBar());
+      automaticallyImplyLeading: false,
+      backgroundColor: BrandColors.grey,
+      title: _buildBar(),
+    );
   }
 
   Widget _buildBar() {
@@ -37,13 +38,6 @@ class EditAppBar extends StatelessWidget implements PreferredSizeWidget {
                   save();
                 },
                 icon: const Icon(Icons.save)),
-            IconButton(
-                style: AppStyle.iconButtonMainStyle(),
-                color: BrandColors.white,
-                onPressed: () {
-                  DIManager.findNavigator().pop();
-                },
-                icon: const Icon(Icons.remove_red_eye_outlined))
           ],
         )
       ],
