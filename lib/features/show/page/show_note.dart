@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../controller/notes_controller.dart';
 import '../../../core/di/di_manager.dart';
 import '../../../core/utils/screen_utils.dart';
 import '../../../core/constants/brand_colors.dart';
