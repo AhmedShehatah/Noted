@@ -5,7 +5,8 @@ import '../di/di_manager.dart';
 import '../styles/app_styles.dart';
 
 class EditAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const EditAppBar({super.key});
+  const EditAppBar({super.key, required this.save});
+  final Function() save;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class EditAppBar extends StatelessWidget implements PreferredSizeWidget {
             IconButton(
                 style: AppStyle.iconButtonMainStyle(),
                 color: BrandColors.white,
-                onPressed: () {},
+                onPressed: () {
+                  save();
+                },
                 icon: const Icon(Icons.save)),
             IconButton(
                 style: AppStyle.iconButtonMainStyle(),

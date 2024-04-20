@@ -22,7 +22,9 @@ class _AddNotesState extends State<AddNotes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const EditAppBar(),
+      appBar: EditAppBar(
+        save: save,
+      ),
       resizeToAvoidBottomInset: true,
       body: Padding(
         padding: EdgeInsets.all(16.height),
@@ -53,43 +55,36 @@ class _AddNotesState extends State<AddNotes> {
                 style:
                     TextStyle(fontSize: 25.0.width, color: BrandColors.white),
               ),
-              ElevatedButton(
-                child: const Text(
-                  'Show',
-                  style: TextStyle(color: Colors.black),
-                ),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => InfoDialog(
-                      text: "Are you sure you want to add this note?",
-                      colorRight: Colors.green,
-                      onPressRight: () {
-                        DIManager.findDep<NotesController>().insertNote(
-                            title: _titleController.text,
-                            content: _contentController.text);
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content:
-                                Text('Your note has been added successfully'),
-                          ),
-                        );
-                      },
-                      textButRight: "Save",
-                      colorLeft: Colors.red,
-                      textButLeft: "Discard",
-                      onPressLeft: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  );
-                },
-              )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void save() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => InfoDialog(
+        text: "Are you sure you want to add this note?",
+        colorRight: Colors.green,
+        onPressRight: () {
+          DIManager.findDep<NotesController>().insertNote(
+              title: _titleController.text, content: _contentController.text);
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Your note has been added successfully'),
+            ),
+          );
+        },
+        textButRight: "Save",
+        colorLeft: Colors.red,
+        textButLeft: "Discard",
+        onPressLeft: () {
+          Navigator.of(context).pop();
+        },
       ),
     );
   }

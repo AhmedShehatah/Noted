@@ -20,7 +20,9 @@ class _ShowNoteState extends State<ShowNote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const ShowNoteAppBar(),
+      appBar: ShowNoteAppBar(
+        edit: edit,
+      ),
       body: Padding(
         padding: EdgeInsets.all(20.width),
         child: SingleChildScrollView(
@@ -40,16 +42,15 @@ class _ShowNoteState extends State<ShowNote> {
                 widget.note.content,
                 style: TextStyle(fontSize: 20.width, color: BrandColors.white),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    DIManager.findNavigator().pushNamed(EditorPage.routeName,
-                        arguments: widget.note);
-                  },
-                  child: const Text("edit"))
             ],
           ),
         ),
       ),
     );
+  }
+
+  void edit() {
+    DIManager.findNavigator()
+        .pushNamed(EditorPage.routeName, arguments: widget.note);
   }
 }

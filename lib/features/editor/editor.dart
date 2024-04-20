@@ -7,6 +7,7 @@ import '../../../core/utils/screen_utils.dart';
 import '../../../data/db/setup/db_setup.dart';
 import '../../core/widgets/edit_appbar.dart';
 import '../add_notes/widgets/info_dialog.dart';
+import '../notes_list_page.dart';
 
 class EditorPage extends StatefulWidget {
   const EditorPage({super.key, required this.note});
@@ -27,7 +28,9 @@ class _EditorPageState extends State<EditorPage> {
     _contentController.text = widget.note.content;
 
     return Scaffold(
-      appBar: const EditAppBar(),
+      appBar: EditAppBar(
+        save: save,
+      ),
       resizeToAvoidBottomInset: true,
       body: Padding(
         padding: EdgeInsets.all(16.height),
@@ -58,75 +61,66 @@ class _EditorPageState extends State<EditorPage> {
                 style:
                     TextStyle(fontSize: 25.0.width, color: BrandColors.white),
               ),
-              ElevatedButton(
-                child: const Text(
-                  'Show',
-                  style: TextStyle(color: Colors.black),
-                ),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) => InfoDialog(
-                      text: "Save changes ?",
-                      colorRight: Colors.green,
-                      onPressRight: () {
-                        DIManager.findDep<NotesController>().updateNote(
-                            NoteData(
-                                id: widget.note.id,
-                                title: _titleController.text,
-                                content: _contentController.text));
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Changes saved successfully!'),
-                          ),
-                        );
-                        Navigator.of(context).pop();
-                      },
-                      textButRight: "Save",
-                      colorLeft: Colors.red,
-                      textButLeft: "Discard",
-                      onPressLeft: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) => InfoDialog(
-                            colorRight: Colors.green,
-                            textButRight: "Keep",
-                            colorLeft: Colors.red,
-                            textButLeft: "Discard",
-                            text:
-                                "Are your sure you want discard your changes ?",
-                            onPressRight: () {
-                              DIManager.findDep<NotesController>().updateNote(
-                                  NoteData(
-                                      id: widget.note.id,
-                                      title: _titleController.text,
-                                      content: _contentController.text));
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Changes saved successfully!'),
-                                ),
-                              );
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                            },
-                            onPressLeft: () {
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              )
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  void save() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => InfoDialog(
+        text: "Save changes ?",
+        colorRight: Colors.green,
+        onPressRight: () {
+          DIManager.findDep<NotesController>().updateNote(NoteData(
+              id: widget.note.id,
+              title: _titleController.text,
+              content: _contentController.text));
+          Navigator.of(context).pop();
+          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Changes saved successfully!'),
+            ),
+          );
+          Navigator.of(context).pop();
+        },
+        textButRight: "Save",
+        colorLeft: Colors.red,
+        textButLeft: "Discard",
+        onPressLeft: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => InfoDialog(
+              colorRight: Colors.green,
+              textButRight: "Keep",
+              colorLeft: Colors.red,
+              textButLeft: "Discard",
+              text: "Are your sure you want discard your changes ?",
+              onPressRight: () {
+                DIManager.findDep<NotesController>().updateNote(NoteData(
+                    id: widget.note.id,
+                    title: _titleController.text,
+                    content: _contentController.text));
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Changes saved successfully!'),
+                  ),
+                );
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+              onPressLeft: () {
+                DIManager.findNavigator().offAll(NotesListPage.routeName);
+              },
+            ),
+          );
+        },
       ),
     );
   }

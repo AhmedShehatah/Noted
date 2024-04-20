@@ -5,7 +5,8 @@ import '../di/di_manager.dart';
 import '../styles/app_styles.dart';
 
 class ShowNoteAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const ShowNoteAppBar({super.key});
+  const ShowNoteAppBar({super.key, required this.edit});
+  final Function() edit;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,9 @@ class ShowNoteAppBar extends StatelessWidget implements PreferredSizeWidget {
             IconButton.outlined(
               style: AppStyle.iconButtonMainStyle(),
               color: BrandColors.white,
-              onPressed: () {},
+              onPressed: () {
+                edit();
+              },
               icon: const Icon(Icons.mode_edit_outline_outlined),
             )
           ],
