@@ -4,9 +4,11 @@ import '../constants/brand_colors.dart';
 
 class AppStyle {
   static iconButtonMainStyle() => IconButton.styleFrom(
-        backgroundColor: BrandColors.grey,
+        side:
+            const BorderSide(color: Color(0x00000000), style: BorderStyle.none),
+        backgroundColor: BrandColors.lightGrey,
         shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(20),
         ),
       );
 }
